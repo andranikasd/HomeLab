@@ -18,6 +18,7 @@ runtimes:
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
   enabled:
+    - actionlint@1.7.7
     - yamllint@1.35.1
     - shfmt@3.6.0
     - shellcheck@0.10.0
