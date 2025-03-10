@@ -18,11 +18,5 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Trunk CLI
-        run: |
-          curl -L https://github.com/trunkhq/trunk/releases/latest/download/trunk-linux-amd64 -o trunk
-          chmod +x trunk
-          sudo mv trunk /usr/local/bin/
-
-      - name: Run Full Check
-        run: trunk check --all
+      - name: Trunk Code Quality
+        uses: trunk-io/trunk-action@v1
