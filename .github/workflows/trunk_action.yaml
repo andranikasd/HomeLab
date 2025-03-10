@@ -1,0 +1,27 @@
+# .github/workflows/trunk.yml
+name: Trunk Full Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trunk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Trunk CLI
+        run: |
+          # Download the latest Trunk binary for Linux (64-bit)
+          curl -L https://github.com/trunkhq/trunk/releases/latest/download/trunk-linux-amd64 -o trunk
+          chmod +x trunk
+          sudo mv trunk /usr/local/bin/
+
+      - name: Run Full Check
+        run: trunk check --all
