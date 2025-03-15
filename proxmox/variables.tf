@@ -1,72 +1,125 @@
-# Base Proxmox connection variables
-variable "proxmox_api_url" {
-  description = "Proxmox API URL (e.g., https://192.168.1.100:8006/api2/json)"
-  type        = string
-}
-
-variable "proxmox_user" {
-  description = "Proxmox API user (e.g., root@pam)"
-  type        = string
-}
-
-variable "proxmox_password" {
-  description = "Proxmox API password"
-  type        = string
-  sensitive   = true
-}
-
-
 variable "proxmox_node" {
   description = "Proxmox node to deploy on"
   type        = string
 }
 
-# Master Node Variables
-variable "master_name" {
-  description = "Master node name"
-  type        = string
+variable "master_count" {
+  description = "Number of master nodes"
+  type        = number
+  default     = 1
 }
 
-variable "master_vmid" {
-  description = "Master node VM ID"
+variable "worker_count" {
+  description = "Number of worker nodes"
   type        = number
+  default     = 2
+}
+
+variable "master_vmid_start" {
+  description = "Starting VMID for master nodes"
+  type        = number
+  default     = 100
+}
+
+variable "worker_vmid_start" {
+  description = "Starting VMID for worker nodes"
+  type        = number
+  default     = 200
 }
 
 variable "master_cores" {
-  description = "Master node CPU cores"
+  description = "CPU cores for master nodes"
   type        = number
+  default     = 4
+}
+
+variable "worker_cores" {
+  description = "CPU cores for worker nodes"
+  type        = number
+  default     = 2
 }
 
 variable "master_memory" {
-  description = "Master node memory in MB"
+  description = "Memory for master nodes (MB)"
   type        = number
+  default     = 8192
+}
+
+variable "worker_memory" {
+  description = "Memory for worker nodes (MB)"
+  type        = number
+  default     = 4096
 }
 
 variable "master_disk_size" {
-  description = "Master node disk size in GB"
+  description = "Disk size for master nodes (GB)"
   type        = number
+  default     = 50
+}
+
+variable "worker_disk_size" {
+  description = "Disk size for worker nodes (GB)"
+  type        = number
+  default     = 50
+}
+
+variable "storage" {
+  description = "Storage location for VMs"
+  type        = string
+}
+
+variable "disk_type" {
+  description = "Disk type (e.g., 'scsi', 'virtio')"
+  type        = string
+  default     = "scsi"
+}
+
+variable "network_model" {
+  description = "Network model for VMs (e.g., 'virtio')"
+  type        = string
+  default     = "virtio"
 }
 
 variable "master_network" {
-  description = "Network bridge for master node"
+  description = "Network bridge for master nodes"
   type        = string
 }
 
-# Worker Node Variables
-variable "worker_nodes" {
-  description = "List of worker nodes"
-  type = list(object({
-    name      = string
-    cores     = number
-    memory    = number
-    disk_size = number
-    vmid      = number
-    network   = string
-  }))
+variable "worker_network" {
+  description = "Network bridge for worker nodes"
+  type        = string
 }
 
-# SSH Key
 variable "ssh_public_key" {
-  description = "SSH public key for cloud-init"
+  description = "SSH public key for VM access"
   type        = string
+}
+
+variable "cloud_init_user" {
+  description = "Default user for cloud-init"
+  type        = string
+  default     = "ubuntu"
+}
+
+variable "template_name" {
+  description = "Cloud-init template name"
+  type        = string
+}
+
+variable "full_clone" {
+  description = "Whether to create a full clone of the template"
+  type        = bool
+  default     = true
+}
+
+variable "cicustom" {
+  description = "Cloud-Init custom configuration file path"
+  type        = string
+  default     = "vendor=local:snippets/qemu-guest-agent.yml"
+}
+
+variable "automatic_reboot" {
+  description = "Automatically reboot the VM after parameter changes"
+  type        = bool
+  default     = true
 }
