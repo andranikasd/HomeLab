@@ -1,0 +1,35 @@
+name: Question / Discussion
+description: Ask a question or open a discussion topic
+title: "[Discussion]: "
+labels: ["question"]
+assignees:
+  - ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This template is for asking a question or starting a general discussion about the project.
+
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: Summarize your question or discussion topic
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Provide as many details as possible about your question or discussion topic
+    validations:
+      required: true
+
+  - type: textarea
+    id: any_relevant_links
+    attributes:
+      label: Relevant Links (Optional)
+      description: Provide any references, code snippets, or links that might add context
+      validations:
+        required: false

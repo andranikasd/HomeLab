@@ -1,0 +1,37 @@
+name: Documentation / Improvement
+description: Suggest improvements or changes to the documentation
+title: "[Docs]: "
+labels: ["documentation"]
+assignees:
+  - ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For suggesting improvements, corrections, or additions to the project’s documentation.
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: |
+        Which part of the documentation needs improvement? 
+        (e.g., README, Wiki, API docs, etc.)
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+      description: Describe the improvement or change you would like to see
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_challenges
+    attributes:
+      label: Current Challenge
+      description: What is confusing or incomplete right now?
+      validations:
+        required: false

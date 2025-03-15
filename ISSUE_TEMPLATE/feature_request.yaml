@@ -1,0 +1,46 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees:
+  - ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to suggest a new feature or enhancement for the project.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: Provide a short summary of the requested feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use Case
+      description: |
+        Why do you want this feature?  
+        How would it help you or others?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: |
+        Describe how you think this feature should work.  
+        Provide examples or alternatives if possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context (Optional)
+      description: |
+        Any other details or context?

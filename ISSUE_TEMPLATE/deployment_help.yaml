@@ -1,0 +1,29 @@
+name: Deployment Help
+description: Issues specifically related to deployment or configuration
+title: "[Deployment]: "
+labels: ["deployment"]
+assignees:
+  - ""
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Are you deploying on Kubernetes, ECS, Docker Compose, etc.?
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Description
+      description: Describe the issue you’re facing with deployment
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or Error Messages
+      description: Paste any relevant logs or error messages
+      render: shell

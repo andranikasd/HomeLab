@@ -1,0 +1,62 @@
+name: Bug Report
+description: Report a reproducible bug or issue with the project
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - ""
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping to improve this project by reporting a bug! Please fill out the sections below to provide us with enough information to investigate.
+
+  - type: input
+    id: short_description
+    attributes:
+      label: Short Description
+      description: Briefly describe what went wrong
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        List the steps needed to reproduce the bug:
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots_logs
+    attributes:
+      label: Screenshots / Logs (Optional)
+      description: Attach screenshots or logs if relevant
+      render: shell
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser, or other relevant environment details
+      render: shell
