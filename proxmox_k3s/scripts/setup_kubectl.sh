@@ -53,9 +53,9 @@ if ! command -v kubectl &>/dev/null; then
    exit 1
 fi
 
+mkdir -p /home/ubuntu/.kube
 # Create a temporary workspace for the kubeconfig file.
-TMP_DIR=$(mktemp -d)
-KUBECONFIG_PATH="$/home/ubuntu/.kube/config"
+KUBECONFIG_PATH="/home/ubuntu/.kube/config"
 
 echo "Fetching kubeconfig from master (${MASTER_IP})..."
 # Use ssh with sudo to output the kubeconfig file.

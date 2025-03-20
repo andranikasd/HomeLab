@@ -25,10 +25,10 @@ BASTION_IP="$4"
 # Log messages are sent to stderr so they don't interfere with JSON output.
 echo "Retrieving k3s node token from master (${MASTER_IP}) via bastion (${BASTION_IP})..." >&2
 
-TOKEN=$(ssh -o BatchMode=yes \
+TOKEN=$(ssh -p 22 -o BatchMode=yes \
            -o StrictHostKeyChecking=no \
            -i "$PRIVATE_KEY_PATH" \
-           -o ProxyCommand="ssh -W %h:%p -q ${USER}@${BASTION_IP}" \
+           -o ProxyCommand="ssh -W %h:22 -q ${USER}@${BASTION_IP}" \
            ${USER}@${MASTER_IP} "sudo cat /var/lib/rancher/k3s/server/node-token")
 
 if [ -z "$TOKEN" ]; then

@@ -50,4 +50,16 @@ helm install cilium cilium/cilium \
   --set global.containerRuntime.integration="k3s" \
   --set global.nodeinit.enabled=true
 
+# Automatically retrieve the master node name
+echo "Retrieving the master node name..."
+MASTER_NODE_NAME=$(kubectl get nodes -o jsonpath='{.items[0].metadata.name}')
+if [ -z "$MASTER_NODE_NAME" ]; then
+    echo "Failed to retrieve the master node name." >&2
+    exit 1
+fi
+echo "Master node identified as: $MASTER_NODE_NAME"
+
+echo "Tainting the master node to prevent scheduling of regular pods..."
 kubectl taint node "$MASTER_NODE_NAME" node-role.kubernetes.io/master=:NoSchedule
+
+echo "=== k3s master setup completed ==="

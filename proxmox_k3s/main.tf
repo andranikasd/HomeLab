@@ -250,8 +250,8 @@ resource "null_resource" "install_nginx" {
       bastion_user        = var.cloud_init_user
       bastion_private_key = file(var.private_key_path)
     }
-    source      = "${path.module}/scripts/nginx.sh"
-    destination = "/home/${var.cloud_init_user}/post_install_nginx.sh"
+    source      = "${path.module}/scripts/install_argocd.sh"
+    destination = "/home/${var.cloud_init_user}/install_argocd.sh"
   }
 
   # Execute the nginx post-install script on the master node
@@ -265,8 +265,8 @@ resource "null_resource" "install_nginx" {
       bastion_private_key = file(var.private_key_path)
     }
     inline = [
-      "chmod +x /home/${var.cloud_init_user}/post_install_nginx.sh",
-      "sudo /home/${var.cloud_init_user}/post_install_nginx.sh"
+      "chmod +x /home/${var.cloud_init_user}/install_argocd.sh",
+      "sudo /home/${var.cloud_init_user}/install_argocd.sh"
     ]
   }
 }
