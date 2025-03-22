@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homelab-apps
+  namespace: argocd
+spec:
+  description: Project for HomeLab applications
+  sourceRepos:
+    - https://github.com/andranikasd/HomeLabApplications.git
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  project: homelab-apps
+  source:
+    repoURL: https://github.com/andranikasd/HomeLabApplications.git
+    targetRevision: HEAD
+    path: apps/longhorn/base/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
